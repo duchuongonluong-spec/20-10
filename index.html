@@ -1,0 +1,678 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gửi mẹ yêu 💐 20/10</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500&family=Dancing+Script:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --plum: #4a1230;
+        --rose: #e0457b;
+        --rose-d: #b82a5e;
+        --blush: #ffe3ec;
+        --paper: #fff9fb;
+        --gold: #e8b34a;
+        --leaf: #3f8f5b;
+        --script: "Dancing Script", "Segoe Script", cursive;
+        --sans:
+          "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        font-family: var(--sans);
+        color: var(--plum);
+        background: radial-gradient(
+          120% 80% at 50% 0%,
+          #fff3f7 0%,
+          var(--blush) 55%,
+          #ffc9db 100%
+        );
+        min-height: 100%;
+        overflow-x: hidden;
+      }
+      #petals {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+      }
+      main {
+        position: relative;
+        z-index: 1;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 28px 16px 40px;
+      }
+
+      /* ---------- Phong bì ---------- */
+      #intro {
+        text-align: center;
+        transition:
+          opacity 0.6s,
+          transform 0.6s;
+      }
+      #intro.gone {
+        opacity: 0;
+        transform: scale(0.94);
+        pointer-events: none;
+        position: absolute;
+      }
+      #intro h1 {
+        font-family: var(--script);
+        font-size: clamp(34px, 8vw, 52px);
+        color: var(--rose-d);
+        margin-bottom: 6px;
+      }
+      #intro p {
+        font-size: 15px;
+        color: #7a4a60;
+        margin-bottom: 70px;
+      }
+      .env {
+        position: relative;
+        display: block;
+        margin: 0 auto;
+        border: 0;
+        cursor: pointer;
+        background: var(--rose);
+        width: min(320px, 80vw);
+        height: 210px;
+        border-radius: 8px;
+        box-shadow: 0 18px 40px rgba(74, 18, 48, 0.28);
+        animation: float 3.2s ease-in-out infinite;
+      }
+      .env:focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: 6px;
+      }
+      @keyframes float {
+        50% {
+          transform: translateY(-8px);
+        }
+      }
+      .env .letter {
+        position: absolute;
+        left: 8%;
+        right: 8%;
+        top: 10px;
+        height: 88%;
+        background: #fff;
+        border-radius: 4px;
+        z-index: 1;
+        transition: transform 0.9s 0.7s;
+        padding: 18px 14px;
+        font-family: var(--script);
+        font-size: 22px;
+        color: var(--rose);
+        text-align: center;
+      }
+      .env .pocket {
+        position: absolute;
+        inset: 0;
+        background: var(--rose-d);
+        z-index: 2;
+        border-radius: 8px;
+        clip-path: polygon(0 0, 50% 56%, 100% 0, 100% 100%, 0 100%);
+      }
+      .env .flap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 56%;
+        background: #cf3a70;
+        z-index: 3;
+        clip-path: polygon(0 0, 100% 0, 50% 100%);
+        transform-origin: top;
+        transition:
+          transform 0.7s,
+          z-index 0s 0.35s;
+      }
+      .env .seal {
+        position: absolute;
+        left: 50%;
+        top: 56%;
+        width: 46px;
+        height: 46px;
+        margin: -23px 0 0 -23px;
+        border-radius: 50%;
+        background: var(--gold);
+        color: #fff;
+        display: grid;
+        place-items: center;
+        font-size: 22px;
+        z-index: 4;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+        transition: opacity 0.4s;
+      }
+      .env.open {
+        animation: none;
+      }
+      .env.open .flap {
+        transform: rotateX(180deg);
+        z-index: 0;
+      }
+      .env.open .letter {
+        transform: translateY(-78px);
+      }
+      .env.open .seal {
+        opacity: 0;
+      }
+
+      /* ---------- Thiệp ---------- */
+      #card {
+        display: none;
+        width: min(540px, 100%);
+        background: var(--paper);
+        border-radius: 22px;
+        box-shadow: 0 24px 60px rgba(74, 18, 48, 0.25);
+        padding: 34px 28px 0;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid #f6c3d4;
+      }
+      #card.show {
+        display: block;
+        animation: cardIn 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+      }
+      @keyframes cardIn {
+        from {
+          opacity: 0;
+          transform: translateY(40px) scale(0.95);
+        }
+      }
+      #card .date {
+        font-size: 13px;
+        color: #9a6a80;
+        text-align: center;
+        letter-spacing: 0.04em;
+      }
+      #card h2 {
+        font-family: var(--script);
+        font-size: clamp(44px, 12vw, 68px);
+        line-height: 1.05;
+        text-align: center;
+        color: var(--rose);
+        margin: 8px 0 2px;
+      }
+      #card .sub {
+        text-align: center;
+        font-size: 14px;
+        color: #7a4a60;
+        margin-bottom: 26px;
+      }
+      #card .to {
+        font-family: var(--script);
+        font-size: 30px;
+        color: var(--plum);
+        margin-bottom: 10px;
+      }
+      #msg p {
+        font-size: 16px;
+        line-height: 1.85;
+        font-weight: 300;
+        margin-bottom: 12px;
+        min-height: 1.85em;
+      }
+      #msg p.typing::after {
+        content: "";
+        display: inline-block;
+        width: 2px;
+        height: 1.1em;
+        background: var(--rose);
+        margin-left: 2px;
+        vertical-align: -3px;
+        animation: blink 0.7s steps(1) infinite;
+      }
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+      #sign {
+        font-family: var(--script);
+        font-size: 30px;
+        color: var(--rose-d);
+        text-align: right;
+        margin: 8px 4px 0;
+        opacity: 0;
+        transition: opacity 1s;
+      }
+      #sign.on {
+        opacity: 1;
+      }
+      #more {
+        text-align: center;
+        margin: 22px 0 4px;
+        display: none;
+      }
+      #more.on {
+        display: block;
+      }
+      .more-btn {
+        font: inherit;
+        font-size: 15px;
+        font-weight: 500;
+        color: #fff;
+        background: linear-gradient(135deg, var(--rose), var(--rose-d));
+        border: 0;
+        border-radius: 999px;
+        padding: 12px 26px;
+        cursor: pointer;
+        box-shadow: 0 8px 20px rgba(224, 69, 123, 0.35);
+        transition:
+          transform 0.15s,
+          box-shadow 0.15s;
+      }
+      .more-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 24px rgba(224, 69, 123, 0.4);
+      }
+      .more-btn:active {
+        transform: scale(0.97);
+      }
+      .more-btn:focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: 3px;
+      }
+      #garden {
+        position: relative;
+        height: 190px;
+        margin: 10px -28px 0;
+        cursor: pointer;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 227, 236, 0) 0%,
+          #ffe3ec 100%
+        );
+      }
+      #garden .hint {
+        position: absolute;
+        top: 6px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-size: 12.5px;
+        color: #9a6a80;
+        transition: opacity 0.5s;
+      }
+      .flower {
+        position: absolute;
+        bottom: 0;
+        width: 70px;
+        height: 140px;
+        transform-origin: 50% 100%;
+        pointer-events: none;
+      }
+      .flower svg {
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+      }
+      .flower .stem {
+        transform-origin: 50% 100%;
+        animation: grow 0.9s cubic-bezier(0.3, 0.8, 0.3, 1) both;
+        animation-delay: var(--d, 0s);
+      }
+      .flower .head {
+        transform-origin: 50px 60px;
+        animation: bloom 0.8s cubic-bezier(0.3, 1.4, 0.5, 1) both;
+        animation-delay: calc(var(--d, 0s) + 0.7s);
+      }
+      @keyframes grow {
+        from {
+          transform: scaleY(0);
+        }
+      }
+      @keyframes bloom {
+        from {
+          transform: scale(0) rotate(-60deg);
+        }
+      }
+      .flower.sway {
+        animation: sway 4s ease-in-out infinite;
+        animation-delay: var(--d, 0s);
+      }
+      @keyframes sway {
+        50% {
+          transform: rotate(3deg);
+        }
+      }
+      .heart {
+        position: fixed;
+        z-index: 9;
+        pointer-events: none;
+        color: var(--rose);
+        animation: rise 1.6s ease-out forwards;
+      }
+      @keyframes rise {
+        to {
+          transform: translate(var(--dx), -140px) scale(1.4);
+          opacity: 0;
+        }
+      }
+      .replay {
+        display: block;
+        margin: 18px auto 0;
+        background: none;
+        border: 0;
+        color: #9a6a80;
+        font: inherit;
+        font-size: 13px;
+        cursor: pointer;
+        text-decoration: underline;
+        position: relative;
+        z-index: 1;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation-duration: 0.01s !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01s !important;
+          transition-delay: 0s !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="petals" aria-hidden="true"></canvas>
+    <main>
+      <section id="intro">
+        <h1>Gửi mẹ yêu</h1>
+        <p>Có một điều con muốn nói với mẹ hôm nay</p>
+        <button class="env" id="env" aria-label="Mở phong bì">
+          <div class="letter">20/10 ♥</div>
+          <div class="pocket"></div>
+          <div class="flap"></div>
+          <div class="seal">♥</div>
+        </button>
+        <p style="margin: 60px 0 0; font-size: 13px">Chạm vào phong bì để mở</p>
+      </section>
+
+      <article id="card">
+        <div class="date" id="date"></div>
+        <h2>Chúc mừng 20/10</h2>
+        <div class="sub">Ngày Phụ nữ Việt Nam</div>
+        <div class="to" id="to"></div>
+        <div id="msg"></div>
+        <div id="sign"></div>
+        <div id="more">
+          <button class="more-btn" id="moreBtn" type="button">
+            💌 Con còn muốn nói thêm
+          </button>
+        </div>
+        <div id="garden" aria-label="Khu vườn hoa, chạm để trồng thêm hoa">
+          <div class="hint" id="hint">
+            Chạm vào vườn để trồng thêm hoa tặng mẹ
+          </div>
+        </div>
+      </article>
+      <button class="replay" id="replay" hidden>Xem lại từ đầu</button>
+    </main>
+
+    <script>
+      const CONFIG = {
+        mom: "Mẹ", 
+        from: "Con của mẹ",
+        message: [
+          "Mẹ ơi, hôm nay là 20/10, nhưng với con, ngày nào mẹ cũng xứng đáng được tặng hoa.",
+          "Cảm ơn mẹ đã thức khuya dậy sớm, đã lặng lẽ lo cho con từng bữa cơm, từng giấc ngủ, từng bước con đi.",
+          "Con chưa nói được nhiều, nhưng con muốn mẹ biết: mẹ là người con thương nhất trên đời.",
+          "Chúc mẹ luôn khỏe mạnh, thật nhiều niềm vui và những nụ cười thật tươi.",
+        ],
+        /* Mỗi lần mẹ bấm nút, thiệp đổi sang một bộ lời chúc dưới đây (mỗi bộ gồm nhiều đoạn). Thêm, bớt tùy ý */
+        extra: [
+          [
+            "Mẹ ơi, có những điều con ít khi nói ra, nhưng hôm nay con muốn nói thật lòng.",
+            "Mẹ là người đầu tiên tin con, và cũng là người ở lại khi con vấp ngã. Cảm ơn mẹ vì những lúc con không tin chính mình, mẹ vẫn tin con.",
+            "Chúc mẹ mỗi sáng thức dậy đều thấy lòng nhẹ nhõm, bình yên và có thật nhiều thời gian cho những điều mẹ thích.",
+          ],
+          [
+            "Mẹ à, con lớn lên rồi, nhưng trong mắt con mẹ vẫn là người tuyệt vời nhất.",
+            "Mọi điều tốt đẹp con có hôm nay đều bắt đầu từ bàn tay và trái tim của mẹ. Mẹ không cần hoàn hảo, vì với con, mẹ đã là điều tuyệt vời nhất rồi.",
+            "Chúc mẹ luôn trẻ trung, xinh đẹp và được yêu thương như cách mẹ đã yêu thương cả nhà.",
+          ],
+          [
+            "Gửi người phụ nữ con thương nhất: nhân ngày 20/10, con chúc mẹ thật nhiều sức khỏe.",
+            "Chúc mẹ ăn ngon, ngủ ngon, đi đâu cũng gặp người tốt, làm gì cũng thuận lợi. Mẹ đã vất vả vì con quá nhiều, giờ đến lượt con chăm sóc mẹ.",
+            "Dù con đi xa đến đâu, mẹ vẫn là nơi con muốn trở về nhất.",
+          ],
+          [
+            "Con thương mẹ nhiều hơn những gì con có thể nói thành lời.",
+            "Một ngày 20/10 thật ngọt ngào cho mẹ, và những ngày sau còn ngọt ngào hơn nữa. Mẹ cười nhiều hơn, lo nghĩ ít hơn, và luôn nhớ rằng có con ở đây.",
+            "Con yêu mẹ rất nhiều.",
+          ],
+        ],
+      };
+      /* Có thể đổi nhanh qua link: ?me=Má&con=Minh */
+      const q = new URLSearchParams(location.search);
+      if (q.get("me")) CONFIG.mom = q.get("me");
+      if (q.get("con")) CONFIG.from = q.get("con");
+
+      const $ = (id) => document.getElementById(id);
+      const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      let timers = [];
+
+      /* ---------- Cánh hoa rơi ---------- */
+      (function () {
+        const c = $("petals"),
+          x = c.getContext("2d");
+        let W,
+          H,
+          ps = [];
+        function size() {
+          W = c.width = innerWidth;
+          H = c.height = innerHeight;
+        }
+        size();
+        addEventListener("resize", size);
+        const cols = ["#ff9fbd", "#ffb8cf", "#f77aa3", "#ffd2e0"];
+        for (let i = 0; i < (reduce ? 0 : 26); i++)
+          ps.push({
+            x: Math.random() * W,
+            y: Math.random() * H,
+            r: 5 + Math.random() * 7,
+            s: 0.4 + Math.random() * 0.9,
+            a: Math.random() * 6.28,
+            v: (Math.random() - 0.5) * 0.03,
+            w: Math.random() * 6.28,
+            col: cols[i % 4],
+          });
+        (function loop() {
+          x.clearRect(0, 0, W, H);
+          for (const p of ps) {
+            p.y += p.s;
+            p.w += 0.02;
+            p.x += Math.sin(p.w) * 0.6;
+            p.a += p.v;
+            if (p.y > H + 20) {
+              p.y = -20;
+              p.x = Math.random() * W;
+            }
+            x.save();
+            x.translate(p.x, p.y);
+            x.rotate(p.a);
+            x.fillStyle = p.col;
+            x.globalAlpha = 0.75;
+            x.beginPath();
+            x.ellipse(0, 0, p.r, p.r * 0.55, 0, 0, 6.28);
+            x.fill();
+            x.restore();
+          }
+          requestAnimationFrame(loop);
+        })();
+      })();
+
+      /* ---------- Mở phong bì ---------- */
+      $("env").addEventListener("click", function () {
+        if (this.classList.contains("open")) return;
+        this.classList.add("open");
+        timers.push(setTimeout(showCard, reduce ? 50 : 1900));
+      });
+
+      function showCard() {
+        $("intro").classList.add("gone");
+        $("date").textContent =
+          "Ngày 20 tháng 10 năm " + new Date().getFullYear();
+        $("to").textContent =
+          "Gửi " +
+          CONFIG.mom.toLowerCase().replace(/^./, (m) => m.toUpperCase()) +
+          " yêu quý,";
+        $("sign").textContent = "♥ " + CONFIG.from;
+        $("card").classList.add("show");
+        $("replay").hidden = false;
+        scrollTo({ top: 0 });
+        timers.push(
+          setTimeout(
+            () => {
+              plantDefault();
+              typeMessage();
+            },
+            reduce ? 0 : 700,
+          ),
+        );
+      }
+
+      /* ---------- Gõ lời chúc ---------- */
+      let run = 0;
+      function typeMessage(paras) {
+        paras = paras || CONFIG.message;
+        const my = ++run,
+          box = $("msg");
+        box.innerHTML = "";
+        $("sign").classList.remove("on");
+        let pi = 0;
+        function next() {
+          if (my !== run) return;
+          if (pi >= paras.length) {
+            $("sign").classList.add("on");
+            $("more").classList.add("on");
+            return;
+          }
+          const p = document.createElement("p");
+          box.appendChild(p);
+          const text = paras[pi++];
+          if (reduce) {
+            p.textContent = text;
+            return next();
+          }
+          p.classList.add("typing");
+          let i = 0;
+          (function tick() {
+            if (my !== run) return;
+            p.textContent = text.slice(0, ++i);
+            if (i < text.length) timers.push(setTimeout(tick, 22));
+            else {
+              p.classList.remove("typing");
+              timers.push(setTimeout(next, 450));
+            }
+          })();
+        }
+        next();
+      }
+
+      /* ---------- Vườn hoa ---------- */
+      const palette = [
+        ["#ff5c8a", "#ffd1df"],
+        ["#e0457b", "#ffc0d6"],
+        ["#ff8fb1", "#fff0f5"],
+        ["#f4a300", "#ffe08a"],
+        ["#b05fd6", "#ecd0fa"],
+      ];
+      function flowerSVG(c) {
+        let petals = "";
+        for (let i = 0; i < 8; i++)
+          petals += `<ellipse cx="50" cy="36" rx="11" ry="24" fill="${i % 2 ? c[1] : c[0]}" transform="rotate(${i * 45} 50 60)"/>`;
+        return `<svg viewBox="0 0 100 200" aria-hidden="true">
+    <g class="stem"><path d="M50 200 C50 160 44 120 50 70" stroke="#3f8f5b" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <ellipse cx="36" cy="150" rx="13" ry="6" fill="#4fa56d" transform="rotate(-30 36 150)"/>
+    <ellipse cx="64" cy="128" rx="13" ry="6" fill="#3f8f5b" transform="rotate(30 64 128)"/></g>
+    <g class="head">${petals}<circle cx="50" cy="60" r="11" fill="#e8b34a"/><circle cx="47" cy="57" r="3" fill="#fff" opacity=".5"/></g></svg>`;
+      }
+      function addFlower(xPct, delay, scale) {
+        const g = $("garden"),
+          f = document.createElement("div");
+        f.className = "flower";
+        f.style.left = `calc(${xPct}% - 35px)`;
+        f.style.setProperty("--d", delay + "s");
+        f.style.height = 110 + Math.random() * 60 + "px";
+        f.style.width = f.style.height.replace("px", "") * 0.5 + "px";
+        if (scale) f.style.transform = `scale(${scale})`;
+        f.innerHTML = flowerSVG(
+          palette[Math.floor(Math.random() * palette.length)],
+        );
+        g.appendChild(f);
+        setTimeout(() => f.classList.add("sway"), (delay + 1.6) * 1000);
+      }
+      function plantDefault() {
+        document.querySelectorAll("#garden .flower").forEach((n) => n.remove());
+        [10, 26, 42, 58, 74, 90].forEach((x, i) => addFlower(x, i * 0.25));
+      }
+      $("garden").addEventListener("click", (e) => {
+        const r = $("garden").getBoundingClientRect();
+        addFlower(((e.clientX - r.left) / r.width) * 100, 0);
+        $("hint").style.opacity = 0;
+        hearts(e.clientX, e.clientY);
+      });
+      function hearts(x, y) {
+        if (reduce) return;
+        for (let i = 0; i < 6; i++) {
+          const h = document.createElement("span");
+          h.className = "heart";
+          h.textContent = "♥";
+          h.style.left = x + "px";
+          h.style.top = y + "px";
+          h.style.fontSize = 12 + Math.random() * 14 + "px";
+          h.style.setProperty("--dx", Math.random() * 80 - 40 + "px");
+          document.body.appendChild(h);
+          setTimeout(() => h.remove(), 1700);
+        }
+      }
+
+      /* ---------- Đổi lời chúc ---------- */
+      let setIdx = 0;
+      $("moreBtn").addEventListener("click", (e) => {
+        const sets = [CONFIG.message].concat(CONFIG.extra);
+        setIdx = (setIdx + 1) % sets.length;
+        typeMessage(sets[setIdx]);
+        $("moreBtn").textContent = "💌 Con còn muốn nói thêm";
+        hearts(e.clientX || innerWidth / 2, e.clientY || innerHeight / 2);
+      });
+
+      /* ---------- Xem lại ---------- */
+      $("replay").addEventListener("click", () => {
+        timers.forEach(clearTimeout);
+        timers = [];
+        $("card").classList.remove("show");
+        $("sign").classList.remove("on");
+        run++;
+        $("more").classList.remove("on");
+        setIdx = 0;
+        $("moreBtn").textContent = "💌 Con còn muốn nói thêm";
+        $("hint").style.opacity = 1;
+        $("replay").hidden = true;
+        $("env").classList.remove("open");
+        $("intro").classList.remove("gone");
+        scrollTo({ top: 0 });
+      });
+    </script>
+  </body>
+</html>
